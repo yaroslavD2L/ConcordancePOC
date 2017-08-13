@@ -1,0 +1,13 @@
+﻿A concordance is an alphabetical list of the principal words used in a book or body of work, listing every instance of each word with its immediate context. Only works of special importance have had concordances prepared for them, such as the Vedas,[1] Bible, Qur'an or the works of Shakespeare, James Joyce or classical Latin and Greek authors,[2] because of the time, difficulty, and expense involved in creating a concordance in the pre-computer era.
+
+
+Mordecai Nathan's Hebrew-Latin Concordance of the Bible
+A concordance is more than an index; additional material make producing them a labor-intensive process, even when assisted by computers, such as commentary, definitions, and topical cross-indexing.
+
+In the precomputing era, search technology was unavailable, and a concordance offered readers of long works such as the Bible something comparable to search results for every word that they would have been likely to search for. Today, the ability to combine the result of queries concerning multiple terms (such as searching for words near other words) has reduced interest in concordance publishing. In addition, mathematical techniques such as latent semantic indexing have been proposed as a means of automatically identifying linguistic information based on word context.
+
+A bilingual concordance is a concordance based on aligned parallel text.
+
+A topical concordance is a list of subjects that a book covers (usually The Bible), with the immediate context of the coverage of those subjects. Unlike a traditional concordance, the indexed word does not have to appear in the verse. The best-known topical concordance is Nave's Topical Bible.
+
+The first Bible concordance was compiled for the Vulgate Bible by Hugh of St Cher (d.1262), who employed 500 monks to assist him. In 1448, Rabbi Mordecai Nathan completed a concordance to the Hebrew Bible. It took him ten years. A concordance to the Greek New Testament was published in 1599 by Henry Stephens, and the Septuagint was done a couple of years later by Conrad Kircher in 1602. The first concordance to the English Bible was published in 1550 by Mr Marbeck. According to Cruden, it did not employ the verse numbers devised by Robert Stephens in 1545, but "the pretty large concordance" of Mr Cotton did. Then followed Cruden's Concordance and Strong's Concordance.
