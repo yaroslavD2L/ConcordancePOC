@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Concordance.Domain
 {
-	internal sealed class Word : IMergeable<Word>
+	internal sealed class Word : IReduceable<Word>
 	{
 		public Word(string value, int index)
 		{
+			if (String.IsNullOrWhiteSpace(value)) {
+				throw new ArgumentNullException(nameof(value));
+			}
+
 			Value = value;
 			Index = new HashSet<int>(new[] { index });
 			Frequency = 1;

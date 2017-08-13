@@ -1,6 +1,6 @@
 ﻿namespace Concordance.Domain
 {
-	internal interface IMergeable<T>
+	internal interface IReduceable<T>
 	{
 		void Merge(T other);
 	}

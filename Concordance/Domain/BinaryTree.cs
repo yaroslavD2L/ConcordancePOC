@@ -1,25 +1,21 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Concordance.Domain
 {
 	internal sealed class BinaryTree<T>
 		: IEnumerable<T>
-		where T : IMergeable<T>
+		where T : IReduceable<T>
 	{
-		private readonly IComparer<T> m_comparer;
-		public BinaryTree(IComparer<T> comparer, BinaryTreeNode<T> root = null)
+		public BinaryTree(BinaryTreeNode<T> root = null)
 		{
-			m_comparer = comparer;
 			Root = root;
 		}
 
 		public BinaryTreeNode<T> Root { get; private set; }
 
-		internal void Add(BinaryTreeNode<T> newNode)
+		public void Add(BinaryTreeNode<T> newNode)
 		{
 			if (Root == null)
 			{
@@ -33,10 +29,10 @@ namespace Concordance.Domain
 
 			while (current != null)
 			{
-				comparisonResult = m_comparer.Compare(current.Value, newNode.Value);
+				comparisonResult = current.CompareTo(newNode);
 				if (comparisonResult == 0)
 				{
-					current.Value.Merge(newNode.Value);
+					current.Merge(newNode);
 					return;
 				}
 
@@ -46,7 +42,7 @@ namespace Concordance.Domain
 					: current.Right;
 			}
 
-			comparisonResult = m_comparer.Compare(parent.Value, newNode.Value);
+			comparisonResult = parent.CompareTo(newNode);
 
 			if (comparisonResult > 0)
 			{
@@ -58,22 +54,22 @@ namespace Concordance.Domain
 			}
 		}
 
-		public void Merge(BinaryTree<T> right)
+		public void Merge(BinaryTree<T> other)
 		{
-			if (right == null)
+			if (other == null)
 			{
 				return;
 			}
 
-			BinaryTreeNode<T> leftList = ToSortedList(Root, null);
-			BinaryTreeNode<T> rightList = ToSortedList(right.Root, null);
+			BinaryTreeNode<T> leftList = ToList(Root, null);
+			BinaryTreeNode<T> rightList = ToList(other.Root, null);
 
 			int size;
-			BinaryTreeNode<T> list = MergeAsSortedLists(leftList, rightList, out size);
+			BinaryTreeNode<T> list = MergeLists(leftList, rightList, out size);
 			Root = ToBinarySearchTreeRoot(ref list, size);
 		}
 
-		private BinaryTreeNode<T> MergeAsSortedLists(BinaryTreeNode<T> left, BinaryTreeNode<T> right, out int size)
+		private BinaryTreeNode<T> MergeLists(BinaryTreeNode<T> left, BinaryTreeNode<T> right, out int size)
 		{
 			BinaryTreeNode<T> head = null;
 			size = 0;
@@ -91,10 +87,11 @@ namespace Concordance.Domain
 				}
 				else
 				{
-					int comparisonResult = m_comparer.Compare(left.Value, right.Value);
+					int comparisonResult = left.CompareTo(right);
 
-					if (comparisonResult == 0) {
-						left.Value.Merge(right.Value);
+					if (comparisonResult == 0)
+					{
+						left.Merge(right);
 						Detach(ref right);
 
 						continue;
@@ -148,16 +145,16 @@ namespace Concordance.Domain
 			return tmp;
 		}
 
-		private BinaryTreeNode<T> ToSortedList(BinaryTreeNode<T> tree, BinaryTreeNode<T> head)
+		private BinaryTreeNode<T> ToList(BinaryTreeNode<T> tree, BinaryTreeNode<T> head)
 		{
 			if (tree == null)
 			{
 				return head;
 			}
 
-			head = ToSortedList(tree.Left, head);
+			head = ToList(tree.Left, head);
 			tree.Left = head;
-			BinaryTreeNode<T> result = ToSortedList(tree.Right, tree);
+			BinaryTreeNode<T> result = ToList(tree.Right, tree);
 			tree.Right = null;
 			return result;
 		}

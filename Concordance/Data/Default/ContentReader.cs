@@ -1,22 +1,18 @@
 ﻿using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
 using Concordance.Domain;
 using System.IO;
 using System.Text;
-using System;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Threading.Tasks.Dataflow;
+using Concordance.Services;
 
-namespace Concordance
+namespace Concordance.Data.Default
 {
 	/// <summary>
 	/// Can be implemented much smarter. The sentence can consist of nested sentences and so on and so on. 
 	/// Parsing can be done by separate algorithms.This POC is not about that.
-	/// A sentence in this case is a line in the file.
 	/// </summary>
-	internal sealed class ContentReader
+	internal sealed class ContentReader : IInputReader<Word>
 	{
 		private readonly string m_filePath;
 		private readonly char[] SentenceEndCharacters = new[] { '.', '!', '?' };
@@ -39,11 +35,12 @@ namespace Concordance
 			return currentSentence;
 		}
 
-		public IEnumerable<Sentence> Read()
+		public IEnumerable<IEnumerable<Word>> Read()
 		{
 			List<Task> resultList = new List<Task>();
 			int sentenceId = 1;
 			StringBuilder buffer = new StringBuilder();
+
 			using (StreamReader streamReader = File.OpenText(m_filePath))
 			{
 				while (!streamReader.EndOfStream)
@@ -51,18 +48,20 @@ namespace Concordance
 					char character = (char)streamReader.Read();
 					buffer.Append(character);
 
-					if (IsEndOfSentence(character)) {
-						Sentence currentSentence = new Sentence(sentenceId++);
-
-						string text = buffer
-							.ToString()
-							.ToLowerInvariant();
-
-						currentSentence.Match(text);
-
-						buffer.Clear();
-						yield return currentSentence;
+					if (!IsEndOfSentence(character) && !streamReader.EndOfStream)
+					{
+						continue;
 					}
+
+					Sentence currentSentence = new Sentence(sentenceId++);
+
+					currentSentence.Match(
+						buffer.ToString()
+					);
+
+					yield return currentSentence;
+
+					buffer.Clear();
 				}
 			}
 		}

@@ -18,6 +18,8 @@ namespace Concordance.Domain
 
 		internal void Match(string line)
 		{
+			line.ToLowerInvariant();
+
 			foreach (Match match in wordPattern.Matches(line))
 			{
 				Add(new Word(match.Groups[0].Value, m_sentenceId));

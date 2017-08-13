@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Concordance", "Concordance\Concordance.csproj", "{8857BBFD-8648-4A1B-B1C3-E1B5DCB492FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Concordance", "Concordance\Concordance.csproj", "{8857BBFD-8648-4A1B-B1C3-E1B5DCB492FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Concordance.Tests", "Concordance.Tests\Concordance.Tests.csproj", "{334A4A2D-B60F-4889-8217-F98938114E92}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Concordance.Tests", "Concordance.Tests\Concordance.Tests.csproj", "{6F3564DF-6F84-4CD7-8AE0-049E40C48705}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{8857BBFD-8648-4A1B-B1C3-E1B5DCB492FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8857BBFD-8648-4A1B-B1C3-E1B5DCB492FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8857BBFD-8648-4A1B-B1C3-E1B5DCB492FB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{334A4A2D-B60F-4889-8217-F98938114E92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{334A4A2D-B60F-4889-8217-F98938114E92}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{334A4A2D-B60F-4889-8217-F98938114E92}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{334A4A2D-B60F-4889-8217-F98938114E92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F3564DF-6F84-4CD7-8AE0-049E40C48705}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F3564DF-6F84-4CD7-8AE0-049E40C48705}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F3564DF-6F84-4CD7-8AE0-049E40C48705}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F3564DF-6F84-4CD7-8AE0-049E40C48705}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
